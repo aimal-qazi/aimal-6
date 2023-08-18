@@ -9,6 +9,7 @@
         placeholder="Enter An Item Name"
         formControlName="item"
       />
+      <input type="hidden" formControlName="ischeck" />
       <button [disabled]="itemForm.invalid" type="submit">
         {{ itemIndex !== null ? "Update" : "Add" }}
       </button>
@@ -25,12 +26,12 @@
     <div class="box">
       <button
         class="check"
-        [ngClass]="{ active: isActive[i] }"
+        [ngClass]="{ active: item.ischeck }"
         (click)="toggle(i)"
       >
         <i class="fa-solid fa-check"></i>
       </button>
-      <p [ngClass]="{ check: isActive[i] }">{{ item.item }}</p>
+      <p [ngClass]="{ check: item.ischeck }">{{ item.item }}</p>
       <div class="btns">
         <button (click)="edit(i)"><i class="fa-solid fa-pencil"></i></button>
         <button (click)="del(i)"><i class="fa-solid fa-trash-can"></i></button>
@@ -38,9 +39,8 @@
     </div>
   </div>
   <div class="allBtns" *ngIf="items.length > 0">
-    <button (click)="selAll()">
-      {{ selAllTask !== true ? "Select All" : "Deselect All" }}
-    </button>
+    <button (click)="selAll()">Select All</button>
     <button (click)="delAll()">Delete All</button>
+    <button (click)="deSelAll()">Deselect All</button>
   </div>
 </div>

@@ -15,11 +15,10 @@ export class AppComponent implements OnInit {
 
   itemIndex: any = null;
 
-  selAllTask: boolean = false;
-
   ngOnInit(): void {
     this.itemForm = new FormGroup({
       item: new FormControl('', [Validators.required]),
+      ischeck: new FormControl(false),
     });
   }
 
@@ -32,6 +31,7 @@ export class AppComponent implements OnInit {
       this.items.push(itemData);
     }
     this.itemForm.reset();
+    console.log(itemData);
   }
 
   del(index: number) {
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   toggle(index: number) {
-    this.isActive[index] = !this.isActive[index];
+    this.items[index].ischeck = !this.items[index].ischeck;
   }
 
   edit(index: number) {
@@ -58,7 +58,13 @@ export class AppComponent implements OnInit {
   }
 
   selAll() {
-    this.selAllTask = !this.selAllTask;
-    this.isActive = this.items.map(() => this.selAllTask);
+    this.items.forEach((a) => {
+      a.ischeck = true;
+    });
+  }
+  deSelAll() {
+    this.items.forEach((a) => {
+      a.ischeck = false;
+    });
   }
 }
