@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
 
   itemIndex: any = null;
 
+  selAllTask: boolean = false;
+
   ngOnInit(): void {
     this.itemForm = new FormGroup({
       item: new FormControl('', [Validators.required]),
@@ -49,5 +51,14 @@ export class AppComponent implements OnInit {
   close() {
     this.itemIndex = null;
     this.itemForm.reset();
+  }
+
+  delAll() {
+    this.items = [];
+  }
+
+  selAll() {
+    this.selAllTask = !this.selAllTask;
+    this.isActive = this.items.map(() => this.selAllTask);
   }
 }

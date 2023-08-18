@@ -37,4 +37,10 @@
       </div>
     </div>
   </div>
+  <div class="allBtns" *ngIf="items.length > 0">
+    <button (click)="selAll()">
+      {{ selAllTask !== true ? "Select All" : "Deselect All" }}
+    </button>
+    <button (click)="delAll()">Delete All</button>
+  </div>
 </div>
