@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
   edit(index: number) {
     this.itemIndex = index;
     let editing = this.items[index].item;
-    this.itemForm.setValue({ item: editing });
+    this.itemForm.patchValue({ item: editing });
   }
 
   close() {
